@@ -10,14 +10,37 @@ export default function ContactModal({ isOpen, onClose, selectedPackage }) {
     phone: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-    alert('Thank you for your inquiry! We will contact you soon.');
-    onClose();
-    setFormData({ name: '', email: '', phone: '', package: '', message: '' });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          selectedPackage: selectedPackage?.name
+        }),
+      });
+
+      if (response.ok) {
+        alert('Thank you for your inquiry! We will contact you soon.');
+        onClose();
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Sorry, there was an error sending your message. Please try again or call us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -124,10 +147,11 @@ export default function ContactModal({ isOpen, onClose, selectedPackage }) {
 
                 <button
                   type="submit"
-                  className="w-full bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center"
+                  disabled={isSubmitting}
+                  className="w-full bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="w-5 h-5 mr-2" />
-                  Send Inquiry
+                  {isSubmitting ? 'Sending...' : 'Send Inquiry'}
                 </button>
               </form>
             </motion.div>
