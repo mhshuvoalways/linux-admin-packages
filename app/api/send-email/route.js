@@ -28,9 +28,9 @@ export async function POST(request) {
     `;
 
     // Send email to business owner
-    const { data, error } = await resend.emails.send({
-      from: 'LinuxAdmin.cz <noreply@linuxadmin.cz>',
-      to: ['info@linuxadmin.cz'],
+    const { error } = await resend.emails.send({
+      from: 'LinuxAdmin.cz <noreply@mhshuvo.com>',
+      to: ['mhshuvoalways@gmail.com'],
       subject: selectedPackage 
         ? `New Package Inquiry: ${selectedPackage}` 
         : 'New Contact Form Submission',
