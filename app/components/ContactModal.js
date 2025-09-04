@@ -8,7 +8,6 @@ export default function ContactModal({ isOpen, onClose, selectedPackage }) {
     name: '',
     email: '',
     phone: '',
-    package: selectedPackage?.name || '',
     message: ''
   });
 
@@ -105,20 +104,6 @@ export default function ContactModal({ isOpen, onClose, selectedPackage }) {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="package" className="block text-sm font-medium text-gray-700 mb-1">
-                    Selected Package
-                  </label>
-                  <input
-                    type="text"
-                    id="package"
-                    name="package"
-                    value={selectedPackage?.name || ''}
-                    readOnly
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50"
                   />
                 </div>
 
