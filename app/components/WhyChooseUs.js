@@ -1,51 +1,39 @@
-'use client';
-import { motion } from 'framer-motion';
-import { 
-  Clock, 
-  Wrench, 
-  Users, 
-  Globe, 
-  Settings, 
-  MapPin 
-} from 'lucide-react';
+"use client";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const features = [
   {
-    icon: Clock,
+    icon: "/accessibility.svg",
     title: "Availability",
     description: "99.9% uptime. Your service availability is our priority.",
-    color: "text-green-600"
   },
   {
-    icon: Wrench,
+    icon: "/support.svg",
     title: "24/7 Support",
-    description: "Our experts are ready to help you 24/7. Our wiki contains various tutorials and is growing every day.",
-    color: "text-blue-600"
+    description:
+      "Our experts are ready to help you 24/7. Our wiki contains various tutorials and is growing every day.",
   },
   {
-    icon: Users,
+    icon: "/technology.svg",
     title: "Technology",
     description: "To run your services we are using top technologies.",
-    color: "text-purple-600"
   },
   {
-    icon: Globe,
+    icon: "/domain.svg",
     title: "Domains",
     description: "We offer more than 850 TLDs to register.",
-    color: "text-orange-600"
   },
   {
-    icon: Settings,
+    icon: "/installation.svg",
     title: "Automated Installers",
     description: "Favorite OS and CMS automatic installation.",
-    color: "text-indigo-600"
   },
   {
-    icon: MapPin,
+    icon: "/location.svg",
     title: "Locality",
     description: "Located in Czech Republic.",
-    color: "text-red-600"
-  }
+  },
 ];
 
 export default function WhyChooseUs() {
@@ -57,9 +45,11 @@ export default function WhyChooseUs() {
             "We are cool, be with us"
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-            If you are beginner or already deploying large project, creation of hosting service with LinuxAdmin.cz was never easier. 
-            We offer fastest hardware and network in field with scalable environment. Our technical support team is ready 24 hours 
-            7 days in week to help you with any request.
+            If you are beginner or already deploying large project, creation of
+            hosting service with LinuxAdmin.cz was never easier. We offer
+            fastest hardware and network in field with scalable environment. Our
+            technical support team is ready 24 hours 7 days in week to help you
+            with any request.
           </p>
         </div>
 
@@ -73,12 +63,22 @@ export default function WhyChooseUs() {
               className="text-center p-6 rounded-xl hover:shadow-lg transition-shadow"
             >
               <div className="flex justify-center mb-4">
-                <div className="bg-gray-50 p-4 rounded-full">
-                  <feature.icon className={`w-8 h-8 ${feature.color}`} />
-                </div>
+                <>
+                  <Image
+                    src={feature.icon}
+                    width={500}
+                    height={500}
+                    alt={feature.title}
+                    className="w-16"
+                  />
+                </>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                {feature.description}
+              </p>
             </motion.div>
           ))}
         </div>
