@@ -30,7 +30,7 @@ export async function POST(request) {
     // Send email to business owner
     const { error } = await resend.emails.send({
       from: 'LinuxAdmin.cz <noreply@mhshuvo.com>',
-      to: ['mhshuvoalways@gmail.com'],
+      to: ['linuxsalespraha@gmail.com'],
       subject: selectedPackage 
         ? `New Package Inquiry: ${selectedPackage}` 
         : 'New Contact Form Submission',
